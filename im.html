@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teología y Análisis</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .article-link:hover {
+      text-decoration: underline;
+    }
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .nav-link:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ffffff;
+    }
+    .article-content {
+      transition: max-height 0.3s ease;
+    }
+    .article-content.expanded {
+      max-height: none !important;
+      overflow-y: visible;
+    }
+    .logo {
+      transition: all 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 640px) {
+      .logo {
+        height: 4rem;
+        width: 4rem;
+        right: 0.75rem;
+        top: 4.5rem;
+        bottom: -0.75rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 transition-colors duration-300">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gray-100 border-b border-gray-300 p-4">
+      <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+        <h1 class="text-4xl font-bold text-gray-900 py-2">Teología y Análisis</h1>
+        <div class="flex items-center mt-2 sm:mt-0">
+          <button id="theme-toggle" class="p-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-900">🌙</button>
+        </div>
+      </div>
+      <nav class="bg-gradient-to-r from-blue-900 to-cyan-500 p-2 mt-2 sticky top-0 z-10 overflow-visible">
+        <div class="container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <ul class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
+            <li><a href="#pensamiento" class="nav-link text-lg font-semibold text-white hover:scale-105 transition-all duration-300 rounded-md px-2 py-1">Pensamiento Teológico</a></li>
+            <li><a href="#biblico" class="nav-link text-lg font-semibold text-white hover:scale-105 transition-all duration-300 rounded-md px-2 py-1">Análisis Bíblico</a></li>
+            <li><a href="#tematico" class="nav-link text-lg font-semibold text-white hover:scale-105 transition-all duration-300 rounded-md px-2 py-1">Análisis Temático</a></li>
+            <li><a href="#hebreo-griego" class="nav-link text-lg font-semibold text-white hover:scale-105 transition-all duration-300 rounded-md px-2 py-1">Análisis Hebreo/Griego</a></li>
+          </ul>
+        </div>
+      </nav>
+      <img src="bbb.png" alt="Logo" class="logo absolute h-24 w-28 right-6 sm:right-3 top-[50px] object-contain z-20 shadow-sm">
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 flex-grow">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-gray-600 mb-4">
+        <a href="#" class="text-gray-700 hover:text-gray-900">Inicio</a> > <span>Artículos</span>
+      </nav>
+
+      <!-- Search Bar -->
+      <div class="mb-6">
+        <input
+          type="text"
+          id="search"
+          placeholder="Buscar artículos..."
+          class="w-full max-w-md p-2 border border-gray-300 rounded bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500"
+        />
+      </div>
+
+      <!-- Article Sections -->
+      <section id="pensamiento" class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">Pensamiento Teológico</h2>
+        <div id="pensamiento-articles" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+      </section>
+      <section id="biblico" class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">Análisis Bíblico</h2>
+        <div id="biblico-articles" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+      </section>
+      <section id="tematico" class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">Análisis Temático</h2>
+        <div id="tematico-articles" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+      </section>
+      <section id="hebreo-griego" class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">Análisis Hebreo/Griego</h2>
+        <div id="hebreo-griego-articles" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 border-t border-gray-300 p-4">
+      <div class="container mx-auto">
+        <div class="flex flex-col sm:flex-row justify-between items-center">
+          <p class="text-gray-600">© 2025 Teología y Análisis. Todos los derechos reservados.</p>
+          <div class="flex space-x-4 mt-2 sm:mt-0">
+            <a href="#" class="text-gray-700 hover:text-gray-900">Contacto</a>
+            <a href="#" class="text-gray-700 hover:text-gray-900">Mapa del sitio</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Article data (solo español, con contenido HTML, scroll y ver más)
+    const articles = [
+      {
+        id: 1,
+        category: "pensamiento",
+        title: "La letra “W” no existe en el alfabeto hebreo: una observación esencial para preservar la fidelidad textual",
+        date: "18 de mayo de 2025",
+        content: `
+<!-- Artículo por Misael P. Sivipaucar -->
+
+<h2>La letra “W” no existe en el alfabeto hebreo: una observación esencial para preservar la fidelidad textual</h2>
+
+<p><strong>Por Misael P. Sivipaucar</strong><br>
+Autor de la teoría "El número tiene fin" y observador independiente de textos bíblicos.</p>
+
+<hr>
+
+<h3>❖ Introducción</h3>
+<p>En el mundo de la traducción y el estudio de lenguas bíblicas, pocos errores son tan extendidos y, al mismo tiempo, tan pasados por alto como el uso de la letra <strong>“W”</strong> en palabras supuestamente hebreas. Esta observación pretende demostrar que <strong>la “W” no existe en el alfabeto hebreo</strong>, y que <strong>su inclusión en transliteraciones de nombres sagrados, como “Yahweh”, representa una alteración moderna y ajena al idioma original</strong>. Esta no es una crítica basada en dogma, sino una afirmación respaldada por la fonología, la lingüística comparada y el estudio del hebreo antiguo y moderno.</p>
+
+<h3>❖ 1. El alefato hebreo: estructura y sonidos</h3>
+<p>El <em>alefato hebreo</em> consta de <strong>22 letras consonantes</strong>, sin vocales escritas como parte del alfabeto base (aunque existen marcas vocálicas llamadas <em>niqqudot</em>).</p>
+
+<blockquote><strong>Lo más importante:</strong> ninguna de estas letras representa el fonema /w/, como el de la letra "w" en inglés ("water") o en alemán ("Welt").</blockquote>
+
+<h4>🔤 Letra clave: ו (vav)</h4>
+<ul>
+  <li>Es la <strong>sexta letra del alefato hebreo</strong>.</li>
+  <li>Fonéticamente, en el hebreo moderno, <strong>se pronuncia como una “v” sonora</strong> (/v/).</li>
+  <li>En hebreo bíblico, puede funcionar como consonante (v) o como semivocal (u, o), dependiendo del contexto vocálico.</li>
+  <li><strong>Nunca se pronuncia como una “w”</strong> (/w/), ni en las escuelas rabínicas ni en la fonología académica hebrea.</li>
+</ul>
+
+<h3>❖ 2. El error de la “W” en transliteraciones religiosas</h3>
+<p>El caso más representativo de este error es el uso moderno del nombre <strong>“Yahweh”</strong> como una supuesta reconstrucción del Tetragrámaton (<strong>יהוה</strong>), el nombre sagrado de Dios en la Biblia hebrea.</p>
+
+<h4>Análisis de יהוה:</h4>
+<ul>
+  <li><strong>Yod (י)</strong> → Y</li>
+  <li><strong>He (ה)</strong> → H</li>
+  <li><strong>Vav (ו)</strong> → V/U</li>
+  <li><strong>He (ה)</strong> → H</li>
+</ul>
+<p>Según esto, <strong>no hay ninguna letra que justifique una “w”</strong>. El sonido <strong>/w/</strong> no está presente en el hebreo original, por lo que cualquier uso de “w” es <strong>una interpolación foránea</strong>, probablemente influida por:</p>
+<ul>
+  <li>Transliteraciones alemanas e inglesas del siglo XIX.</li>
+  <li>Suposiciones fonéticas ajenas a la tradición oral hebrea.</li>
+  <li>El uso del inglés como idioma dominante en traducciones modernas.</li>
+</ul>
+
+<h3>❖ 3. Consecuencias teológicas y lingüísticas</h3>
+<p>Esta omisión no es solo un detalle técnico: tiene profundas implicancias para la <strong>precisión textual, el respeto por el idioma original, y la teología basada en nombres sagrados</strong>.</p>
+<ul>
+  <li>La pronunciación de nombres sagrados como “Yahweh” o “Yahwin” introduce <strong>sonidos inexistentes en el idioma de origen</strong>.</li>
+  <li>Cualquier intento serio de <em>restaurar el nombre divino</em> o estudiar los nombres hebreos con autenticidad debe <strong>descartar el uso de la “W”</strong>.</li>
+</ul>
+
+<h3>❖ 4. Ejemplos de errores comunes</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Transliteración moderna</th>
+      <th>Problema</th>
+      <th>Forma más fiel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Yahweh</td>
+      <td>Usa “w” que no existe en hebreo</td>
+      <td>Yahuah, Yahveh, Yehovah</td>
+    </tr>
+    <tr>
+      <td>Yawheh</td>
+      <td>Invención moderna</td>
+      <td>Yehowah, Yahuh</td>
+    </tr>
+    <tr>
+      <td>Dawid (David)</td>
+      <td>“W” reemplaza a una “v”</td>
+      <td>David (con v)</td>
+    </tr>
+    <tr>
+      <td>Mowrah (temor)</td>
+      <td>Forma inventada</td>
+      <td>Morah (con "o" o "v")</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>❖ 5. Conclusión</h3>
+<blockquote>
+  <strong>La letra “W” es ajena al sistema fonético y gráfico del hebreo bíblico y moderno.</strong><br>
+  Su inclusión en nombres y palabras que se pretenden hebreas <strong>no puede justificarse ni lingüística ni teológicamente</strong>.
+</blockquote>
+<p>Cualquier persona, institución o corriente doctrinal que desee <strong>respetar la integridad del idioma hebreo original</strong> debe evitar el uso de la “W” en transliteraciones, especialmente cuando se trata de <strong>nombres divinos o textos sagrados</strong>.</p>
+
+<hr>
+
+<h3>📌 Sobre el autor</h3>
+<p><strong>Misael P. Sivipaucar</strong> es investigador independiente, autor de la teoría "El número tiene fin", y observador de estructuras lingüísticas y teológicas. Esta observación sobre la letra “W” y su incompatibilidad con el hebreo es una contribución abierta al debate sobre fidelidad textual y restauración de lo original.</p>
+        `
+      },
+      {
+        id: 2,
+        category: "pensamiento",
+        title: "Definición del Matrimonio",
+        date: "17 de mayo de 2025",
+        content: `
+<style>
+  .matrimonio-box {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background: #f9f9f9;
+    border-left: 5px solid #4a90e2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: "Segoe UI", sans-serif;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .matrimonio-box h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .matrimonio-box h3 {
+    font-size: 20px;
+    color: #34495e;
+    margin-top: 30px;
+  }
+
+  .matrimonio-box p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .matrimonio-box blockquote {
+    border-left: 4px solid #4a90e2;
+    padding-left: 15px;
+    margin: 20px 0;
+    color: #555;
+    font-style: italic;
+    background: #eef3f8;
+  }
+
+  .matrimonio-author {
+    margin-top: 40px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: right;
+    color: #555;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+</style>
+
+<div class="matrimonio-box">
+  <h2>Definición del Matrimonio:</h2>
+  <h3>Una Perspectiva Teológica, Etimológica y Cultural</h3>
+
+  <p>El matrimonio, en su definición más esencial, no debe reducirse a una mera ceremonia o rito. En su sentido original y etimológico, la palabra <strong>"matrimonio"</strong> proviene del latín <em>matrimonium</em>, que está compuesta por las palabras <em>mater</em> (madre) y <em>monium</em> (condición, acción o estado). Esta etimología nos lleva a comprender que el matrimonio no se trata de una ceremonia formal, sino de una unión fundamental entre dos personas, que puede existir incluso sin la necesidad de un ritual.</p>
+
+  <p>La visión bíblica refuerza esta comprensión. En <strong>Génesis 2:24</strong>, el matrimonio se describe como un acto de unión de dos personas, sin hacer referencia a una ceremonia específica.</p>
+
+  <blockquote>"Por eso dejará el hombre a su padre y a su madre, y se unirá a su mujer, y los dos serán una sola carne."</blockquote>
+
+  <p>Esta unión, que trasciende lo ceremonial, es lo que define el matrimonio en su esencia más pura.</p>
+
+  <p>Jesús, en <strong>Mateo 19:4-6</strong>, reafirma la visión de unión como un principio divino que trasciende las costumbres culturales y sociales de la época:</p>
+
+  <blockquote>"¿No habéis leído que el que los hizo al principio, los hizo hombre y mujer, y dijo: Por esto el hombre dejará a su padre y a su madre, y se unirá a su mujer, y los dos serán una sola carne?"</blockquote>
+
+  <p>Esta enseñanza subraya que el matrimonio es fundamentalmente una unión de personas basada en un compromiso y no en una ceremonia religiosa o social.</p>
+
+  <p>En el Antiguo Testamento, vemos ejemplos de uniones matrimoniales que no requerían formalidades ceremoniales, sino que se basaban en un compromiso de por vida entre los individuos. Isaac y Rebeca, por ejemplo, en <strong>Génesis 24:67</strong>, se unieron sin un rito formal, pero su unión fue profundamente significativa y estable.</p>
+
+  <p>La Biblia describe cómo Isaac tomó a Rebeca como su esposa y la amó, sin hacer referencia a una ceremonia que validara su matrimonio. Este es un ejemplo de cómo la unión personal fue el elemento fundamental del matrimonio.</p>
+
+  <p>Culturalmente, a lo largo de la historia, muchas sociedades han interpretado el matrimonio como una unión de compromiso entre dos personas, independientemente de la formalidad ceremonial.</p>
+
+  <p>Aunque las ceremonias se han vuelto más prominentes con el tiempo, especialmente en culturas que desarrollaron sistemas religiosos y legales complejos, el matrimonio como unión sigue siendo un principio universal que trasciende las costumbres ceremoniales.</p>
+
+  <p><strong>Por lo tanto, el matrimonio no es simplemente un contrato social o religioso que depende de la validación ceremonial, sino una unión profunda y comprometida entre dos personas.</strong></p>
+
+  <p>La ceremonia, si bien puede ser significativa como un símbolo o un acto público de esa unión, no es el elemento esencial que define el matrimonio en su raíz. El matrimonio es una relación de compromiso mutuo, una unión que trasciende cualquier formalidad.</p>
+
+  <p>Así, aquellos que ven el matrimonio exclusivamente a través de la lente ceremonial están interpretando el término de manera limitada y moderna, mientras que la definición más auténtica y profunda del matrimonio se encuentra en su raíz etimológica y en su significado bíblico: una unión de dos personas, que puede existir independientemente de cualquier ritual o ceremonia.</p>
+
+  <div class="matrimonio-author">
+    Autor: Misael P. Sivipaucar
+  </div>
+</div>
+
+        `
+      },
+      {
+        id: 3,
+        category: "biblico",
+        title: "Análisis Hermenéutico y Exegético Profundo Sobre Malaquías 3:10 y Hebreos 7:8",
+        date: "15 de mayo de 2025",
+        content: `
+<section class="prose max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-4">Análisis Hermenéutico y Exegético Profundo Sobre Malaquías 3:10 y Hebreos 7:8</h1>
+  <p class="italic mb-6">Por qué el diezmo no es obligatorio para la Iglesia<br>Autor: <strong>Misael P. Sivipaucar</strong></p>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">1. Malaquías 3:10: Contexto histórico, lingüístico, teológico y gramatical</h2>
+  <h3 class="text-xl font-semibold mt-4 mb-1">Contexto histórico:</h3>
+  <p>Malaquías fue un profeta del período postexílico (siglo V a.C.), durante la restauración del templo y la nación de Israel bajo la Ley Mosaica. El pueblo enfrentaba problemas de negligencia en la ofrenda de los diezmos (Malaquías 3:8). En este contexto, el llamado a traer “todos los diezmos al alfolí” (<strong>בֵּית הָאוֹצָר</strong>, <em>bêṯ ha’ôṣār</em>) es una invitación a cumplir con el sistema establecido para sostener el sacerdocio levítico y el culto del templo.</p>
+
+  <h3 class="text-xl font-semibold mt-4 mb-1">Análisis lingüístico y morfosintáctico del hebreo:</h3>
+  <ul class="list-disc pl-6">
+    <li><strong>הָבִיאוּ</strong> (<em>hāvî’û</em>, “traed”): Imperativo plural, orden colectiva dirigida a Israel, no a la Iglesia.</li>
+    <li><strong>הַמַּעֲשֵׂר</strong> (<em>hamma‘ăśēr</em>, “el diezmo”): Artículo definido, refiere a un sistema establecido, no genérico.</li>
+    <li><strong>בֵּית הָאוֹצָר</strong> (<em>bêṯ ha’ôṣār</em>, “alfolí”): Lugar físico en el templo, no espiritual ni simbólico.</li>
+    <li><strong>וּבָחַנְתִּי</strong> (<em>ūvāḥanṭî</em>, “y probaré”): Verbo en perfecto con waw consecutivo, acción segura en respuesta a la obediencia.</li>
+    <li><strong>פָּתַחְתִּי</strong> (<em>pātaḥtî</em>, “abrí”): Perfecto de primera persona singular, muestra la acción divina activa y continua.</li>
+    <li><strong>אֹתְכֶם</strong> (<em>otkhem</em>, “a ustedes”): Pronombre plural, reafirma el sujeto colectivo: Israel.</li>
+  </ul>
+
+  <h3 class="text-xl font-semibold mt-4 mb-1">Teología del pasaje:</h3>
+  <p>El texto está dentro de la economía teocrática del Antiguo Pacto. El mandato es exclusivo para Israel como nación bajo la ley, no aplicable a la Iglesia. La promesa de bendición está condicionada a la obediencia nacional, y no tiene vigencia en el Nuevo Pacto establecido por Cristo (Hebreos 8:6–13).</p>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">2. Hebreos 7:8 y el cambio del sacerdocio y sistema del diezmo</h2>
+  <h3 class="text-xl font-semibold mt-4 mb-1">Contexto general:</h3>
+  <p>Hebreos 7 presenta a Melquisedec como un sacerdote eterno superior al levítico. Recibió diezmos de Abraham, lo que demuestra la inferioridad del sacerdocio levítico.</p>
+
+  <h3 class="text-xl font-semibold mt-4 mb-1">Análisis gramatical y semántico del griego:</h3>
+  <ul class="list-disc pl-6">
+    <li><strong>λαμβάνουσιν</strong> (<em>lambánousin</em>, “reciben”): Presente indicativo activo, describe una práctica continua pero limitada en el tiempo.</li>
+    <li><strong>οἱ ἀποθνῄσκοντες</strong> (<em>hoi apothnēskontes</em>, “los que mueren”): Participio que enfatiza la mortalidad del sacerdocio levítico.</li>
+    <li><strong>τοῦ ζῶντος</strong> (<em>tou zōntos</em>, “el que vive”): Contrasta con el sacerdocio eterno de Cristo.</li>
+  </ul>
+
+  <h3 class="text-xl font-semibold mt-4 mb-1">Implicación teológica:</h3>
+  <p>Hebreos muestra que el sistema levítico, incluyendo el diezmo, es temporal y fue abolido. Imponerlo hoy es anacrónico (Hebreos 7:12; 8:13).</p>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">3. Principios hermenéuticos fundamentales</h2>
+  <ul class="list-disc pl-6">
+    <li><strong>Contexto histórico y literario:</strong> Malaquías habla a Israel, no a la Iglesia.</li>
+    <li><strong>Contexto gramatical:</strong> El lenguaje usado indica un mandato temporal y nacional.</li>
+    <li><strong>Principio de discontinuidad:</strong> Hebreos declara obsoleto el Antiguo Pacto y su sistema.</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">4. La práctica del dar en la Iglesia primitiva</h2>
+  <p>La Iglesia primitiva promovía el dar voluntario y generoso:</p>
+  <ul class="list-disc pl-6">
+    <li><strong>2 Corintios 9:6–7:</strong> Cada uno dé como propuso en su corazón.</li>
+    <li><strong>Hechos 4:32–35:</strong> Compartían todo sin fijar porcentajes.</li>
+    <li><strong>1 Corintios 16:1–2:</strong> Colectas regulares pero voluntarias.</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">5. Refutación de argumentos populares</h2>
+  <ul class="list-disc pl-6">
+    <li><strong>Mateo 23:23:</strong> Jesús habla a fariseos bajo la Ley, no a la Iglesia.</li>
+    <li><strong>Hebreos 7:8:</strong> Describe un hecho histórico, no un mandato actual.</li>
+    <li><strong>Diezmo como porcentaje fijo:</strong> En el AT había diezmos múltiples con diferentes propósitos.</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">6. Apoyo de eruditos y teólogos relevantes</h2>
+  <ul class="list-disc pl-6">
+    <li><strong>John MacArthur:</strong> “El diezmo era parte de la ley mosaica y fue abolido con Cristo.”</li>
+    <li><strong>F.F. Bruce:</strong> “Hebreos enfatiza la discontinuidad entre el sacerdocio levítico y el de Cristo.”</li>
+    <li><strong>Gordon Fee:</strong> “El NT promueve el dar voluntario y generoso, no el diezmo legalista.”</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">7. Conclusión irrefutable</h2>
+  <p>El análisis profundo demuestra que:</p>
+  <ul class="list-disc pl-6">
+    <li>Malaquías 3:10 es un mandato específico para Israel bajo la ley, no aplicable a la Iglesia.</li>
+    <li>Hebreos 7:8 muestra la temporalidad del sistema levítico y del diezmo.</li>
+    <li>El Nuevo Pacto establece una nueva forma de dar: libre, voluntaria y movida por la gracia.</li>
+  </ul>
+  <p class="mt-4"><strong>Por lo tanto:</strong> aplicar Malaquías 3:10 y Hebreos 7:8 como fundamento para exigir diezmos en la Iglesia es <strong>teológicamente erróneo</strong>, <strong>hermenéuticamente inválido</strong> y <strong>exegeticamente insostenible</strong>.</p>
+
+  <p class="text-right italic mt-6">Autor: <strong>Misael P. Sivipaucar</strong></p>
+</section>
+
+        `
+      },
+      {
+        id: 4,
+        category: "biblico",
+        title: "Análisis de Salmo 23",
+        date: "14 de mayo de 2025",
+        content: `
+          <p><strong>Introducción:</strong> El Salmo 23, <em>"El Señor es mi pastor"</em>, expresa confianza en la providencia divina.</p>
+          <p>Su estructura poética y uso del hebreo transmiten consuelo, relevantes en la antigüedad y hoy. Este análisis explora su <em>contexto histórico</em> y mensaje.</p>
+          <ul class="list-disc pl-5">
+            <li>Contexto pastoral del antiguo Israel.</li>
+            <li>Esperanza en tiempos de adversidad.</li>
+          </ul>
+          <blockquote class="border-l-4 border-gray-300 pl-4 italic">"Aunque camine por valles de sombra, no temeré." – Salmo 23:4</blockquote>
+          <p><a href="#" class="text-blue-600 hover:underline">Lee más</a> sobre el Salmo 23.</p>
+        `
+      },
+      {
+        id: 5,
+        category: "tematico",
+        title: "“El Número Tiene Fin”",
+        date: "10 de mayo de 2025",
+        content: `
+<style>
+  .numero-teoria {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 30px;
+    background: linear-gradient(to right, #f7f9fc, #eef2f7);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    animation: fadeSlide 1.2s ease;
+  }
+
+  .numero-teoria h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .numero-teoria h2::before {
+    content: "∑ ";
+    color: #2980b9;
+  }
+
+  .numero-teoria h3 {
+    font-size: 20px;
+    color: #34495e;
+    margin-top: 25px;
+    border-left: 4px solid #3498db;
+    padding-left: 10px;
+  }
+
+  .numero-teoria p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 10px;
+    color: #444;
+  }
+
+  .numero-teoria blockquote {
+    margin: 25px 0;
+    padding: 15px 20px;
+    background-color: #e8f0fe;
+    border-left: 4px solid #2980b9;
+    font-style: italic;
+    color: #2c3e50;
+  }
+
+  .numero-teoria .autor {
+    text-align: right;
+    margin-top: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color: #666;
+  }
+
+  @keyframes fadeSlide {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="1">
+  <h2>Teoría de Misael P. Sivipaucar:<br>“El Número Tiene Fin”</h2>
+
+  <h3>I. Principio Ontológico</h3>
+  <p>Todo lo que existe parte de la unidad. La unidad no es un número más: es el origen de todos los números. La multiplicidad nace de la unidad, pero no la supera. Todo número compuesto es simplemente una repetición o reorganización de la unidad. Por tanto, el número no es infinito: es una expansión del Uno, pero no lo trasciende.</p>
+
+  <h3>II. Límite Matemático</h3>
+  <p>El sistema decimal está construido sobre una base cerrada: 0 al 9. Estos diez dígitos son los ladrillos de todo lo demás. Cualquier número posterior es una combinación simbólica de ellos, no una creación nueva. Por lo tanto, desde el punto de vista matemático, el número como tal tiene un límite concreto. La creación de 10, 11, o millones no añade nuevos números: solo reorganiza los existentes.</p>
+
+  <h3>III. Ley Científica del Lenguaje Numérico</h3>
+  <p>Toda ciencia que mida, cuente o calcule depende del lenguaje numérico. Este lenguaje se apoya en símbolos finitos. Como ningún sistema de medida puede operar fuera de su lenguaje base, el número no puede superar sus símbolos fundacionales. Así como el ADN tiene 4 letras que codifican todo lo vivo, el número tiene solo 10 símbolos que codifican toda la realidad cuantificable.</p>
+
+  <h3>IV. Principio Lógico de la Identidad Numérica</h3>
+  <p>Todo número es identificable solo en relación con la unidad. Si no puedes contar “uno”, no puedes contar nada. Por tanto, la lógica pura demuestra que la esencia del número no está en el infinito, sino en la unidad repetida finitamente. Infinito no es un número: es un concepto, una idea externa al sistema numérico real. Así, el número no puede ser infinito, porque el infinito no puede ser contado.</p>
+
+  <h3>V. Teología Filosófica de lo Finito Perfecto</h3>
+  <p>Dios no creó números infinitos, sino una estructura numérica cerrada, perfecta y suficiente. El 0 representa el vacío, el 9 el límite. La serie del 0 al 9 encierra todo el potencial del universo numérico. El fin del número no es una carencia: es su perfección.</p>
+
+  <blockquote>“La eternidad no está en el número, sino en la unidad.”</blockquote>
+
+  <h3>Conclusión</h3>
+  <p>El número, entendido desde su raíz simbólica, lógica y existencial, tiene fin. Su expansión no es evolución, sino repetición. El universo no necesita más que 10 formas para expresar lo incontable.</p>
+
+  <div class="autor">— Misael P. Sivipaucar</div>
+</div>
+
+        `
+      },
+      {
+        id: 6,
+        category: "tematico",
+        title: "La Gracia en la Teología Cristiana",
+        date: "9 de mayo de 2025",
+        content: `
+          <p><strong>Definición:</strong> La <em>gracia</em> es el favor inmerecido de Dios.</p>
+          <p>Presente como <em>hen</em> en el Antiguo Testamento y <em>charis</em> en el Nuevo, la gracia es clave en la soteriología y la ética cristiana.</p>
+          <ul class="list-disc pl-5">
+            <li>Base de la salvación cristiana.</li>
+            <li>Influencia en la vida ética.</li>
+          </ul>
+          <blockquote class="border-l-4 border-gray-300 pl-4 italic">"Por gracia sois salvos mediante la fe." – Efesios 2:8</blockquote>
+          <p><a href="#" class="text-blue-600 hover:underline">Explora</a> la teología de la gracia.</p>
+        `
+      },
+      {
+        id: 7,
+        category: "hebreo-griego",
+        title: "El Término 'Agape' en el Nuevo Testamento",
+        date: "5 de mayo de 2025",
+        content: `
+          <p><strong>Concepto:</strong> El término griego <em>agape</em> denota amor incondicional.</p>
+          <p>Distinto de <em>eros</em> o <em>philia</em>, <em>agape</em> refleja el amor de Dios, como en 1 Corintios 13. Se compara con el hebreo <em>hesed</em>.</p>
+          <ul class="list-disc pl-5">
+            <li>Uso en textos griegos originales.</li>
+            <li>Virtud suprema en el cristianismo.</li>
+          </ul>
+          <blockquote class="border-l-4 border-gray-300 pl-4 italic">"El amor es paciente, es bondadoso." – 1 Corintios 13:4</blockquote>
+          <p><a href="#" class="text-blue-600 hover:underline">Profundiza</a> en <em>agape</em>.</p>
+        `
+      },
+      {
+        id: 8,
+        category: "hebreo-griego",
+        title: "El Término 'Hesed' en el Antiguo Testamento",
+        date: "4 de mayo de 2025",
+        content: `
+          <p><strong>Definición:</strong> El hebreo <em>hesed</em> significa amor leal y misericordia.</p>
+          <p>Frecuente en Salmos y Profetas, refleja el pacto entre Dios y su pueblo. Se compara con el griego <em>agape</em> por su profundidad.</p>
+          <ul class="list-disc pl-5">
+            <li>Riqueza semántica en textos hebreos.</li>
+            <li>Relación con el amor divino.</li>
+          </ul>
+          <blockquote class="border-l-4 border-gray-300 pl-4 italic">"Tu misericordia es grande, oh Señor." – Salmo 86:13</blockquote>
+          <p><a href="#" class="text-blue-600 hover:underline">Explora</a> el término <em>hesed</em>.</p>
+        `
+      }
+    ];
+
+    // State
+    let theme = 'light';
+
+    // DOM elements
+    const themeToggle = document.getElementById('theme-toggle');
+    const searchInput = document.getElementById('search');
+    const pensamientoArticles = document.getElementById('pensamiento-articles');
+    const biblicoArticles = document.getElementById('biblico-articles');
+    const tematicoArticles = document.getElementById('tematico-articles');
+    const hebreoGriegoArticles = document.getElementById('hebreo-griego-articles');
+
+    // Render articles
+    function renderArticles() {
+      // Clear sections
+      pensamientoArticles.innerHTML = '';
+      biblicoArticles.innerHTML = '';
+      tematicoArticles.innerHTML = '';
+      hebreoGriegoArticles.innerHTML = '';
+
+      // Filter articles
+      const filteredArticles = articles.filter(article =>
+        article.title.toLowerCase().includes(searchInput.value.toLowerCase())
+      );
+
+      // Render articles by category
+      filteredArticles.forEach(article => {
+        const div = document.createElement('div');
+        div.className = `fade-in bg-gray-100 border border-gray-300 rounded-lg p-4 shadow-sm ${theme === 'dark' ? 'bg-gray-800 border-gray-600' : ''}`;
+        div.dataset.articleId = article.id;
+        div.innerHTML = `
+          <h3 class="text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}">${article.title}</h3>
+          <p class="text-sm mb-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}">${article.date}</p>
+          <div class="article-content max-h-96 overflow-y-auto pr-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}">
+            ${article.content}
+            <p class="mt-2 text-right">
+              <a href="#" class="toggle-expand text-blue-600 hover:underline cursor-pointer ${theme === 'dark' ? 'text-blue-400' : ''}" data-article-id="${article.id}">... Ver más</a>
+            </p>
+          </div>
+          <div class="flex space-x-2 mt-2">
+            <button class="share-btn" data-platform="facebook">Facebook</button>
+            <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+          </div>
+        `;
+        const target = {
+          pensamiento: pensamientoArticles,
+          biblico: biblicoArticles,
+          tematico: tematicoArticles,
+          'hebreo-griego': hebreoGriegoArticles
+        }[article.category];
+        if (target) target.appendChild(div);
+      });
+
+      // Style share buttons
+      document.querySelectorAll('.share-btn').forEach(btn => {
+        btn.className = `px-2 py-1 rounded ${theme === 'dark' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`;
+        btn.addEventListener('click', () => {
+          alert(`Simulando compartir en ${btn.dataset.platform}`);
+        });
+      });
+
+      // Add toggle expand/collapse functionality
+      document.querySelectorAll('.toggle-expand').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const articleId = link.dataset.articleId;
+          const contentDiv = link.closest('.article-content');
+          contentDiv.classList.toggle('expanded');
+          link.textContent = contentDiv.classList.contains('expanded') ? '... Ver menos' : '... Ver más';
+        });
+      });
+    }
+
+    // Theme toggle
+    function updateThemeStyles() {
+      if (theme === 'dark') {
+        document.body.classList.add('bg-gray-900', 'text-white');
+        document.body.classList.remove('bg-white', 'text-gray-900');
+        document.querySelector('header').classList.add('dark:bg-gray-800');
+        document.querySelector('header').classList.remove('bg-gray-100');
+        document.querySelector('nav').classList.add('dark:bg-gradient-to-r', 'dark:from-gray-800', 'dark:to-gray-600');
+        document.querySelector('nav').classList.remove('bg-gradient-to-r', 'from-blue-900', 'to-cyan-500');
+        document.querySelector('footer').classList.add('dark:bg-gray-700');
+        document.querySelector('footer').classList.remove('bg-gray-200');
+        document.querySelector('h1').classList.add('text-white');
+        document.querySelector('h1').classList.remove('text-gray-900');
+        document.querySelectorAll('h2').forEach(h2 => h2.classList.add('text-white'));
+        document.querySelectorAll('h2').forEach(h2 => h2.classList.remove('text-gray-900'));
+        document.querySelectorAll('.nav-link').forEach(a => {
+          a.classList.add('text-gray-300', 'hover:text-white');
+          a.classList.remove('text-white');
+        });
+        document.querySelector('#search').classList.add('bg-gray-800', 'text-white', 'border-gray-600');
+        document.querySelector('#search').classList.remove('bg-white', 'text-gray-900', 'border-gray-300');
+      } else {
+        document.body.classList.add('bg-white', 'text-gray-900');
+        document.body.classList.remove('bg-gray-900', 'text-white');
+        document.querySelector('header').classList.add('bg-gray-100');
+        document.querySelector('header').classList.remove('dark:bg-gray-800');
+        document.querySelector('nav').classList.add('bg-gradient-to-r', 'from-blue-900', 'to-cyan-500');
+        document.querySelector('nav').classList.remove('dark:bg-gradient-to-r', 'dark:from-gray-800', 'dark:to-gray-600');
+        document.querySelector('footer').classList.add('bg-gray-200');
+        document.querySelector('footer').classList.remove('dark:bg-gray-700');
+        document.querySelector('h1').classList.add('text-gray-900');
+        document.querySelector('h1').classList.remove('text-white');
+        document.querySelectorAll('h2').forEach(h2 => h2.classList.add('text-gray-900'));
+        document.querySelectorAll('h2').forEach(h2 => h2.classList.remove('text-white'));
+        document.querySelectorAll('.nav-link').forEach(a => {
+          a.classList.add('text-white');
+          a.classList.remove('text-gray-300', 'hover:text-white');
+        });
+        document.querySelector('#search').classList.add('bg-white', 'text-gray-900', 'border-gray-300');
+        document.querySelector('#search').classList.remove('bg-gray-800', 'text-white', 'border-gray-600');
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      theme = theme === 'light' ? 'dark' : 'light';
+      themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
+      updateThemeStyles();
+      renderArticles(); // Re-render to update article styles
+    });
+
+    // Search
+    searchInput.addEventListener('input', renderArticles);
+
+    // Initial render
+    updateThemeStyles();
+    renderArticles();
+  </script>
+</body>
+</html>
